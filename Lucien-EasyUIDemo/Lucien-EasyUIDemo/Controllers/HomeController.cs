@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Lucien_EasyUIDemo.Controllers
+namespace Lucien_EasyUI.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,6 +24,11 @@ namespace Lucien_EasyUIDemo.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Assembly()
+        {
             return View();
         }
     }

@@ -1,7 +1,79 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<div style="margin:20px 0 10px 0;"></div>
+<div class="easyui-accordion" style="width:500px;height:300px;">
+    <div title="About" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
+        <h3 style="color:#0099FF;">Accordion for jQuery</h3>
+        <p>Accordion is a part of easyui framework for jQuery. It lets you define your accordion component on web page more easily.</p>
+    </div>
+    <div title="Help" data-options="iconCls:'icon-help'" style="padding:10px;">
+        <p>The accordion allows you to provide multiple panels and display one or more at a time. Each panel has built-in support for expanding and collapsing. Clicking on a panel header to expand or collapse that panel body. The panel content can be loaded via ajax by specifying a 'href' property. Users can define a panel to be selected. If it is not specified, then the first panel is taken by default.</p>
+    </div>
+    <div title="TreeMenu" data-options="iconCls:'icon-search'" style="padding:10px;">
+        <ul class="easyui-tree" id="Tree">
+            <li>
+                <span>Foods</span>
+                <ul>
+                    <li>
+                        <span>Fruits</span>
+                        <ul>
+                            <li id="1">apple</li>
+                            <li id="2">orange</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Vegetables</span>
+                        <ul>
+                            <li id="1">tomato</li>
+                            <li id="2">carrot</li>
+                            <li id="1">cabbage</li>
+                            <li id="1">potato</li>
+                            <li id="2">lettuce</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="magazineGrid">
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#magazineGrid').datagrid({
+            height: 340,
+            url: "/Data/NameJson.json",
+            method: 'GET',
+            queryParams: {  },
+            idField: '产品ID',
+            striped: true,
+            fitColumns: true,
+            singleSelect: false,
+            rownumbers: true,
+            pagination: false,
+            nowrap: false,
+            pageSize: 10,
+            pageList: [10, 20, 50, 100, 150, 200],
+            showFooter: true,
+            columns: [[
+                { field: 'firstName', title: 'firstName', width: 180, align: 'left' },
+                { field: 'lastName', title: 'lastName', width: 150, align: 'left' },
+                { field: 'email', title: 'email', width: 100, align: 'left' },
+            ]],
+            onBeforeLoad: function (param) {
+            },
+            onLoadSuccess: function (data) {
 
-<p>Use this area to provide additional information.</p>
+            },
+            onLoadError: function () {
+
+            },
+            onClickCell: function (rowIndex, field, value) {
+
+            }
+        });
+        $('#Tree').tree({
+            onClick: function (node) {
+                alert(node.id);  // alert node text property when clicked
+            }
+        });
+    })
+</script>
