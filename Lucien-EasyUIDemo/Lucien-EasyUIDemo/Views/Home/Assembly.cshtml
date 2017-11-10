@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <div style="margin:20px 0;">
+        <a href="javascript:void(0)" class="btn btn-default" onclick="setvalue()">设置值</a>
+        <a href="javascript:void(0)" class="btn btn-default" onclick="alert($('#state').combobox('getValue'))">获取选中值</a>
+        <a href="javascript:void(0)" class="btn btn-default" onclick="$('#state').combobox('disable')">不可选</a>
+        <a href="javascript:void(0)" class="btn btn-default" onclick="$('#state').combobox('enable')">可选</a>
+    </div>
+    <div class="easyui-panel" style="width:100%;max-width:400px;padding:30px 60px;">
+        <div style="margin-bottom:20px">
+            <select id="state" class="easyui-combobox" name="state" label="State:" labelPosition="top" style="width:100%;">
+                <option value="AL" selected>Open</option>
+                <option value="AK">Close</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div style="margin:20px 0 10px 0;">
+    <a href="#" class="easyui-linkbutton" onclick="javascript:$('#p').panel('open')">Open</a>
+    <a href="#" class="easyui-linkbutton" onclick="javascript:$('#p').panel('close')">Close</a>
+</div>
+<div id="p" class="easyui-panel" title="Basic Panel" style="width:700px;height:200px;padding:10px;">
+    <p style="font-size:14px">jQuery EasyUI framework helps you build your web pages easily.</p>
+    <ul>
+        <li>easyui is a collection of user-interface plugin based on jQuery.</li>
+        <li>easyui provides essential functionality for building modem, interactive, javascript applications.</li>
+        <li>using easyui you don't need to write many javascript code, you usually defines user-interface by writing some HTML markup.</li>
+        <li>complete framework for HTML5 web page.</li>
+        <li>easyui save your time and scales while developing your products.</li>
+        <li>easyui is very easy but powerful.</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    function setvalue() {
+        $.messager.prompt('SetValue', 'Please input the value(CO,NV,UT,etc):', function (v) {
+            if (v) {
+                $('#state').combobox('setValue', v);
+            }
+        });
+    }
+    $(document).ready(function () {
+        $("#state").combobox({
+            onChange: function (n, o) {
+                if (n == "AL") {
+                    $("#p").panel('open')
+                }
+                else {
+                    $("#p").panel('close')
+                }
+            }
+        });
+    });
+</script>
+
