@@ -37,10 +37,14 @@
 <div id="magazineGrid">
 </div>
 <script type="text/javascript">
+    var Dataurl = "/Data/NameJson.json";
     $(document).ready(function () {
+        LoadDataGrid(Dataurl);
+    });
+    function LoadDataGrid(URL) {
         $('#magazineGrid').datagrid({
             height: 340,
-            url: "/Data/NameJson.json",
+            url: URL,
             method: 'GET',
             queryParams: {  },
             idField: '产品ID',
@@ -69,11 +73,19 @@
             onClickCell: function (rowIndex, field, value) {
 
             }
-        });
-        $('#Tree').tree({
-            onClick: function (node) {
-                alert(node.id);  // alert node text property when clicked
+        })
+    }
+    $('#Tree').tree({
+        onClick: function (node) {
+            debugger;
+            if (node.id == 1) {
+                Dataurl = "/Data/NameJsonCopy.json";
+                LoadDataGrid(Dataurl);
+            } else {
+                Dataurl = "/Data/NameJson.json";
+                LoadDataGrid(Dataurl);
             }
-        });
-    })
+            $("#magazineGrid").datagrid('reload');
+        }
+    });
 </script>
