@@ -46,7 +46,7 @@
             height: 340,
             url: URL,
             method: 'GET',
-            queryParams: {  },
+            queryParams: {},
             idField: '产品ID',
             striped: true,
             fitColumns: true,
@@ -61,7 +61,25 @@
                 { field: 'firstName', title: 'firstName', width: 180, align: 'left' },
                 { field: 'lastName', title: 'lastName', width: 150, align: 'left' },
                 { field: 'email', title: 'email', width: 100, align: 'left' },
+                {
+                    field: '操作', title: '操作', width: 100, align: 'left', formatter: function (value, rec) {
+                        return '<span style="color:red" onclick="Edit()">编辑</span>&nbsp;<span style="color:red" onclick="Delete()">删除</span>';
+                    }
+                }
             ]],
+            toolbar: [{
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    alert('添加数据')
+                }
+            }, '-', {
+                text: '保存',
+                iconCls: 'icon-save',
+                handler: function () {
+                    alert('保存数据')
+                }
+            }],
             onBeforeLoad: function (param) {
             },
             onLoadSuccess: function (data) {
@@ -75,9 +93,14 @@
             }
         })
     }
+    function Delete() {
+        alert("删除");
+    }
+    function Edit() {
+        alert("编辑");
+    }
     $('#Tree').tree({
         onClick: function (node) {
-            debugger;
             if (node.id == 1) {
                 Dataurl = "/Data/NameJsonCopy.json";
                 LoadDataGrid(Dataurl);
